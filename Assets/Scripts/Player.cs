@@ -10,12 +10,13 @@ public class Player : MonoBehaviour
 
     string input;
     public bool isRight;
-
+    SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
         height = transform.localScale.y;
-        speed = 5f;
+        sprite = GetComponent<SpriteRenderer>();
+
     }
 
     public void Init(bool isRightPlayer)
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
 
         if(isRightPlayer)
         {
+            //sprite.color = new Color(1, 0, 0, 1);
             //Place player to the right
             pos = new Vector2 (GameManager.topRight.x, 0);
             pos -= Vector2.right * transform.localScale.x;//Move player a little bit to the left
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
             input = "PlayerRight";
         } else
         {
+            //sprite.color = new Color(0, 0, 1, 1);
             //Place player to the left
             pos = new Vector2(GameManager.bottomLeft.x, 0);
             pos += Vector2.right * transform.localScale.x;//Move player a little bit to the left

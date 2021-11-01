@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField]
-    float speed;
+    //[SerializeField]
+    public float speed;
     float radius;
     Vector2 direction;
+    int leftScore = 0;
+    int rightScore = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +37,16 @@ public class Ball : MonoBehaviour
         //Game Over
         if (transform.position.x < GameManager.bottomLeft.x + radius && direction.x < 0)
         {
-            Debug.Log("Right Player Wins!");
+            rightScore += 1;
+            Debug.Log("Right Player Hits the Goal! Player Right: " + rightScore);
+            transform.position = new Vector2(0, 0);
         }
 
         if (transform.position.x > GameManager.topRight.x - radius && direction.x > 0)
         {
-            Debug.Log("Left Player Wins!");
+            leftScore += 1;
+            Debug.Log("Left Player Hits the Goal! Player Left: " + leftScore);
+            transform.position = new Vector2(0, 0);
         }
     }
     //Collide with players
